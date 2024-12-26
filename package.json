@@ -1,0 +1,18 @@
+{
+  "name": "task-cli",
+  "version": "1.0.0",
+  "description": "A task-cli written in nodejs.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hkc619",
+  "license": "ISC",
+  "bin": {
+    "hello": "./bin/app.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "type": "module"
+}
