@@ -9,7 +9,7 @@
   "author": "hkc619",
   "license": "ISC",
   "bin": {
-    "hello": "./bin/app.js"
+    "hellocli": "./index.js"
   },
   "dependencies": {
     "commander": "^12.1.0"
