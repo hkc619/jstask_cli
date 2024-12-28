@@ -1,11 +1,18 @@
 #!/usr/bin/env node
 
-import { program } from "commander";
+import { Command } from "commander";
+
+const program = new Command();
 
 program
   .version("0.0.1")
   .usage("[options]")
   .option("-n, --name", "Your name.")
-  .parse();
+  .option("-a, --add", "Add a new task.")
+  .option("-u, --update", "Update a task.")
+  .option("-d, --delete", "Delete a task.");
 
-console.log("Hello");
+program.parse();
+const options = program.opts();
+console.log(program);
+console.log("Hello, %s.", program.args[0] || "world");
