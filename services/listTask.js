@@ -1,3 +1,8 @@
-import data from "../data.json" assert { type: "json" };
+import * as fs from "fs";
 
-console.log(data);
+fs.readFile("../data.json", (err, data) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(data);
+});
