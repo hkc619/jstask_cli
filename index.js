@@ -3,7 +3,7 @@
 import { Command } from "commander";
 import data from "./data.json" assert { type: "json" };
 import { addTask } from "./services/addTask.js";
-import * as chalk from chalk;
+import * as chalk from "chalk";
 
 const program = new Command();
 
