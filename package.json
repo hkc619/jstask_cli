@@ -9,9 +9,10 @@
   "author": "hkc619",
   "license": "ISC",
   "bin": {
-    "hellocli": "./index.js"
+    "taskcli": "./index.js"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
     "commander": "^12.1.0"
   },
   "type": "module"

@@ -17,31 +17,43 @@ const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.
 const countries = loadJSON('./data/countries.json');
 */
 
-export function addTask(taskDesc) {
+export function addTask(taskDesc, filePath) {
   var newTaskId = data.task.length > 0 ? data.task.length + 1 : 0;
   var newTask = taskDesc;
   var newTaskstatus = "todo";
   var newTaskCreT = Date.now();
   var newTaskUpdT = Date.now();
 
-  var newTaskJson = JSON.stringify({
-    task: [
-      {
-        id: newTaskId,
-        descirption: newTask,
-        staus: newTaskstatus,
-        createAt: newTaskCreT,
-        updateAt: newTaskUpdT,
-      },
-    ],
-  });
+  var newTaskJson = {
+    id: newTaskId,
+    descirption: newTask,
+    staus: newTaskstatus,
+    createAt: newTaskCreT,
+    updateAt: newTaskUpdT,
+  };
   console.log(newTaskJson);
 
+  fs.readFile(filePath, (err, data) => {
+    if (err) {
+      console.log(err);
+    }
+    var json = JSON.parse(data);
+    json["task"].push(newTaskJson);
+    data = JSON.stringify(json);
+    console.log(data);
+
+    fs.writeFile(filePath, data, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+  });
+  /*
   fs.writeFile("../data.json", newTaskJson, (err) => {
     if (err) {
       console.log(err);
     }
   });
-
+  */
   return data.length;
 }

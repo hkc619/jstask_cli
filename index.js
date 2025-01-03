@@ -3,6 +3,7 @@
 import { Command } from "commander";
 import data from "./data.json" assert { type: "json" };
 import { addTask } from "./services/addTask.js";
+import * as chalk from chalk;
 
 const program = new Command();
 
@@ -19,6 +20,6 @@ program
   .action((str, options) => {
     console.log(str);
     console.log(options);
-    console.log(`Task added successfully (ID: ${addTask(str)})`);
+    console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`);
   });
 program.parse();
