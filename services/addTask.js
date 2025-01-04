@@ -27,11 +27,11 @@ export function addTask(taskDesc, filePath) {
   var newTaskJson = {
     id: newTaskId,
     descirption: newTask,
-    staus: newTaskstatus,
+    status: newTaskstatus,
     createAt: newTaskCreT,
     updateAt: newTaskUpdT,
   };
-  console.log(newTaskJson);
+  //console.log(newTaskJson);
 
   //should a new function: if no file, create a new file
 
