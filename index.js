@@ -22,4 +22,13 @@ program
     console.log(options);
     console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`);
   });
+
+program
+  .command("list")
+  .argument("<string>", "Task you want to add.")
+  .action((str, options) => {
+    console.log(str);
+    console.log(options);
+  });
+
 program.parse();
