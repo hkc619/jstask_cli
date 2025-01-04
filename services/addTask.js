@@ -18,7 +18,7 @@ const countries = loadJSON('./data/countries.json');
 */
 
 export function addTask(taskDesc, filePath) {
-  var newTaskId = data.task.length > 0 ? data.task.length + 1 : 0;
+  var newTaskId = data.task.length > 0 ? data.task.length + 1 : 1;
   var newTask = taskDesc;
   var newTaskstatus = "todo";
   var newTaskCreT = Date.now();
@@ -26,12 +26,14 @@ export function addTask(taskDesc, filePath) {
 
   var newTaskJson = {
     id: newTaskId,
-    descirption: newTask,
-    staus: newTaskstatus,
+    description: newTask,
+    status: newTaskstatus,
     createAt: newTaskCreT,
     updateAt: newTaskUpdT,
   };
-  console.log(newTaskJson);
+  //console.log(newTaskJson);
+
+  //should a new function: if no file, create a new file
 
   fs.readFile(filePath, (err, data) => {
     if (err) {

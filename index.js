@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
-import data from "./data.json" assert { type: "json" };
 import { addTask } from "./services/addTask.js";
-import * as chalk from "chalk";
+import { listTask } from "./services/listTask.js";
+import chalk from "chalk";
 
 const program = new Command();
 
@@ -18,8 +18,18 @@ program
   .command("add")
   .argument("<string>", "Task you want to add.")
   .action((str, options) => {
-    console.log(str);
-    console.log(options);
+    //console.log(str);
+    //console.log(options);
     console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`);
   });
+
+program
+  .command("list")
+  .argument("<string>", "List tasks.")
+  .action((str, options) => {
+    //console.log(str);
+    //console.log(options);
+    listTask(str);
+  });
+
 program.parse();
