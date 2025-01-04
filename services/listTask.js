@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import * as fs from "fs";
 
-export async function listData(status) {
+export async function listTask(status) {
   try {
     const data = await fs.promises.readFile("./data.json", "utf8");
     const jsonData = JSON.parse(data);

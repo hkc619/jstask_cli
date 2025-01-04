@@ -26,7 +26,7 @@ export function addTask(taskDesc, filePath) {
 
   var newTaskJson = {
     id: newTaskId,
-    descirption: newTask,
+    description: newTask,
     status: newTaskstatus,
     createAt: newTaskCreT,
     updateAt: newTaskUpdT,

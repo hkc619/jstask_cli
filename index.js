@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 import { addTask } from "./services/addTask.js";
-import { listData } from "./services/listTask.js";
+import { listTask } from "./services/listTask.js";
 import chalk from "chalk";
 
 const program = new Command();
@@ -29,7 +29,7 @@ program
   .action((str, options) => {
     //console.log(str);
     //console.log(options);
-    listData(str);
+    listTask(str);
   });
 
 program.parse();
