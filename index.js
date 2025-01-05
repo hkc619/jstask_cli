@@ -32,4 +32,15 @@ program
     listTask(status);
   });
 
+program
+  .command("update")
+  .argument(
+    "<id> <description>",
+    "ID and new description of the task you want to update"
+  )
+  .action((id, description) => {
+    console.log(id);
+    console.log(description);
+  });
+
 program.parse();
