@@ -25,11 +25,11 @@ program
 
 program
   .command("list")
-  .argument("<string>", "List tasks.")
-  .action((str, options) => {
-    //console.log(str);
-    //console.log(options);
-    listTask(str);
+  .argument("[status]", "List tasks.")
+  .action((status, options) => {
+    console.log(status);
+    console.log(status);
+    listTask(status);
   });
 
 program.parse();
