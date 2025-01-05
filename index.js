@@ -3,6 +3,7 @@
 import { Command } from "commander";
 import { addTask } from "./services/addTask.js";
 import { listTask } from "./services/listTask.js";
+import { updateTask } from "./services/updateTask.js";
 import chalk from "chalk";
 
 const program = new Command();
@@ -25,11 +26,23 @@ program
 
 program
   .command("list")
-  .argument("<string>", "List tasks.")
-  .action((str, options) => {
-    //console.log(str);
-    //console.log(options);
-    listTask(str);
+  .argument("[status]", "List tasks.")
+  .action((status, options) => {
+    console.log(status);
+    console.log(status);
+    listTask(status);
+  });
+
+program
+  .command("update")
+  .argument(
+    "<argument...>",
+    "ID and new description of the task you want to update"
+  )
+  .action((argument) => {
+    console.log(argument[0]);
+    console.log(argument[1]);
+    updateTask(argument[0], argument[1]);
   });
 
 program.parse();

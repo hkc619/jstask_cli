@@ -1,14 +1,14 @@
 import chalk from "chalk";
 import * as fs from "fs";
 
-//export async function updateTask(status) {}
+//export async function markProgressTask(status) {}
 
-export async function updateTask(id, newDescription) {
+const markProgressTask = async (id) => {
   try {
     const data = await fs.promises.readFile("./data.json", "utf8");
     const jsonData = JSON.parse(data);
-    jsonData["task"][id]["description"] = newDescription;
-    //console.log(jsonData);
+    jsonData["task"][id]["status"] = "in-progress";
+    console.log(jsonData);
 
     fs.promises.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
       if (err) {
@@ -19,4 +19,6 @@ export async function updateTask(id, newDescription) {
   } catch (error) {
     console.log(error);
   }
-}
+};
+
+markProgressTask(1);
