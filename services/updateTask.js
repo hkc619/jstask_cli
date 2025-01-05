@@ -3,7 +3,7 @@ import * as fs from "fs";
 
 //export async function updateTask(status) {}
 
-const updateTask = async (id, newDescription) => {
+export async function updateTask(id, newDescription) {
   try {
     const data = await fs.promises.readFile("./data.json", "utf8");
     const jsonData = JSON.parse(data);
@@ -19,6 +19,4 @@ const updateTask = async (id, newDescription) => {
   } catch (error) {
     console.log(error);
   }
-};
-
-updateTask(1, "new description");
+}
