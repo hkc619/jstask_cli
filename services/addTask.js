@@ -18,31 +18,33 @@ const countries = loadJSON('./data/countries.json');
 */
 
 export function addTask(taskDesc, filePath) {
-  var newTaskId = data.task.length > 0 ? data.task.length + 1 : 1;
-  var newTask = taskDesc;
-  var newTaskstatus = "todo";
-  var newTaskCreT = Date.now();
-  var newTaskUpdT = Date.now();
-
-  var newTaskJson = {
-    id: newTaskId,
-    description: newTask,
-    status: newTaskstatus,
-    createAt: newTaskCreT,
-    updateAt: newTaskUpdT,
-  };
-  //console.log(newTaskJson);
-
   //should a new function: if no file, create a new file
+  var newTaskId;
 
   fs.readFile(filePath, (err, data) => {
     if (err) {
       console.log(err);
     }
     var json = JSON.parse(data);
+    newTaskId = json["task"].length > 0 ? json["task"].length + 1 : 1;
+    var newTask = taskDesc;
+    const newTaskstatus = "todo";
+    const time = Date.now();
+    const NowTime = new Date(time);
+    var newTaskCreT = NowTime.toUTCString();
+    var newTaskUpdT = NowTime.toUTCString();
+
+    var newTaskJson = {
+      id: newTaskId,
+      description: newTask,
+      status: newTaskstatus,
+      createAt: newTaskCreT,
+      updateAt: newTaskUpdT,
+    };
+
     json["task"].push(newTaskJson);
     data = JSON.stringify(json);
-    console.log(data);
+    //console.log(data);
 
     fs.writeFile(filePath, data, (err) => {
       if (err) {
@@ -57,5 +59,5 @@ export function addTask(taskDesc, filePath) {
     }
   });
   */
-  return data.length;
+  return newTaskId;
 }
