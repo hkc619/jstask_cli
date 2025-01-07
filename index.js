@@ -15,15 +15,18 @@ program.version("0.0.1").usage("[options]").option("-n, --name", "Your name.");
   .option("-d, --delete", "Delete a task.")
   .option("-l, --list", "A list of seleted tasks.");
   */
+
+// Add
 program
   .command("add")
   .argument("<string>", "Task you want to add.")
   .action((str, options) => {
     //console.log(str);
     //console.log(options);
-    console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`);
+    console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`); //should return id number or ...
   });
 
+// List
 program
   .command("list")
   .argument("[status]", "List tasks.")
@@ -31,16 +34,31 @@ program
     listTask(status);
   });
 
+// Update
 program
   .command("update")
   .argument(
     "<argument...>",
-    "ID and new description of the task you want to update"
+    "ID and new description of the task you want to update."
   )
   .action((argument) => {
     console.log(argument[0]);
     console.log(argument[1]);
     updateTask(argument[0], argument[1]);
   });
+
+// Mark in progress
+program
+  .command("mark-in-progress")
+  .argument("<Id>", "ID of the task you want to mark in progress.")
+  .action((Id) => {});
+
+// Mark done
+program
+  .command("mark-done")
+  .argument("<Id>", "ID of the task you want to mark done.")
+  .action((Id) => {});
+
+// Delete
 
 program.parse();
