@@ -28,8 +28,6 @@ program
   .command("list")
   .argument("[status]", "List tasks.")
   .action((status, options) => {
-    console.log(status);
-    console.log(status);
     listTask(status);
   });
 
