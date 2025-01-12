@@ -3,7 +3,7 @@ import * as fs from "fs";
 
 //export async function markDoneTask(status) {}
 
-const markDoneTask = async (id) => {
+export async function markDoneTask(id) {
   try {
     id -= 1;
     const data = await fs.promises.readFile("./data.json", "utf8");
@@ -25,6 +25,4 @@ const markDoneTask = async (id) => {
   } catch (error) {
     console.log(error);
   }
-};
-
-markDoneTask(1);
+}
