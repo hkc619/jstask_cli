@@ -7,6 +7,7 @@ import { updateTask } from "./services/updateTask.js";
 import { markDoneTask } from "./services/markDone.js";
 import { markProgressTask } from "./services/markProgress.js";
 import { deleleTask } from "./services/deleteTask.js";
+import { removeTask } from "./services/removeTask.js";
 import chalk from "chalk";
 
 const program = new Command();
@@ -69,9 +70,17 @@ program
 // Delete
 program
   .command("delete")
-  .argument("<Id>", "ID of the task you want to delete.")
+  .argument("<Id>", "ID of the task you want to deleted.")
   .action((Id) => {
     deleleTask(Id);
+  });
+
+//
+program
+  .command("remove")
+  .argument("<Id>", "ID of the task you want to remove.")
+  .action((Id) => {
+    removeTask(Id);
   });
 
 program.parse();
