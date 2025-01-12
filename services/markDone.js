@@ -14,13 +14,12 @@ export async function markDoneTask(id) {
 
     jsonData["task"][id]["status"] = "done";
     jsonData["task"][id]["updateAt"] = newTaskUpdT;
-    console.log(jsonData);
+    console.log(jsonData["task"][id]);
 
     fs.promises.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(chalk.bgRed(err));
       }
-      console.log(jsonData["task"][id]);
     });
   } catch (error) {
     console.log(error);

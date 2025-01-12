@@ -6,6 +6,7 @@ import { listTask } from "./services/listTask.js";
 import { updateTask } from "./services/updateTask.js";
 import { markDoneTask } from "./services/markDone.js";
 import { markProgressTask } from "./services/markProgress.js";
+import { deleleTask } from "./services/deleteTask.js";
 import chalk from "chalk";
 
 const program = new Command();
@@ -66,5 +67,11 @@ program
   });
 
 // Delete
+program
+  .command("delete")
+  .argument("<Id>", "ID of the task you want to delete.")
+  .action((Id) => {
+    deleleTask(Id);
+  });
 
 program.parse();
