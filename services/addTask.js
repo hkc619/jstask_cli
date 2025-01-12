@@ -26,6 +26,7 @@ export function addTask(taskDesc, filePath) {
       console.log(err);
     }
     var json = JSON.parse(data);
+    //need to rewrite with reading last task's id
     newTaskId = json["task"].length > 0 ? json["task"].length + 1 : 1;
     var newTask = taskDesc;
     const newTaskstatus = "todo";
@@ -49,6 +50,8 @@ export function addTask(taskDesc, filePath) {
     fs.writeFile(filePath, data, (err) => {
       if (err) {
         console.log(err);
+      } else {
+        console.log(`Add new task ${newTaskId} successfully.`);
       }
     });
   });

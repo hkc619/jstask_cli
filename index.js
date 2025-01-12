@@ -4,6 +4,10 @@ import { Command } from "commander";
 import { addTask } from "./services/addTask.js";
 import { listTask } from "./services/listTask.js";
 import { updateTask } from "./services/updateTask.js";
+import { markDoneTask } from "./services/markDone.js";
+import { markProgressTask } from "./services/markProgress.js";
+import { deleleTask } from "./services/deleteTask.js";
+import { removeTask } from "./services/removeTask.js";
 import chalk from "chalk";
 
 const program = new Command();
@@ -51,14 +55,32 @@ program
 program
   .command("mark-in-progress")
   .argument("<Id>", "ID of the task you want to mark in progress.")
-  .action((Id) => {});
+  .action((Id) => {
+    markProgressTask(Id);
+  });
 
 // Mark done
 program
   .command("mark-done")
   .argument("<Id>", "ID of the task you want to mark done.")
-  .action((Id) => {});
+  .action((Id) => {
+    markDoneTask(Id);
+  });
 
 // Delete
+program
+  .command("delete")
+  .argument("<Id>", "ID of the task you want to deleted.")
+  .action((Id) => {
+    deleleTask(Id);
+  });
+
+//
+program
+  .command("remove")
+  .argument("<Id>", "ID of the task you want to remove.")
+  .action((Id) => {
+    removeTask(Id);
+  });
 
 program.parse();
