@@ -1,32 +1,29 @@
 import * as fs from "fs";
-import data from "../data.json" assert { type: "json" };
+import chalk from "chalk";
+import { json } from "stream/consumers";
 
-import * as path from "path";
-import { basename, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import { json } from "node:stream/consumers";
-
-/*
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const filename = basename(__filename);
-console.log(path.dirname(__filename));
-console.log(path.join(__dirname, "/data.json"));
-const dataPath = path.join(__dirname, "/data.json");
-const loadJSON = (path) => JSON.parse(fs.readFileSync(new URL(path, import.meta.url)));
-const countries = loadJSON('./data/countries.json');
-*/
-
-export function addTask(taskDesc, filePath) {
-  //should a new function: if no file, create a new file
+export function addTask(taskDesc, filePath, newJson) {
+  // When newJson is True, create a new initial JSON file.
   var newTaskId;
-
+  if (newJson) {
+    const iniTask = { task: [] };
+    const data = JSON.stringify(iniTask);
+    fs.writeFile(filePath, data, (err) => {
+      if (err) {
+        console.log(chalk.bgRed(err));
+        return;
+      }
+      console.log("Create file successfully.");
+    });
+  }
+  // Read json file to get old task list and turn into object.
   fs.readFile(filePath, (err, data) => {
     if (err) {
-      console.log(err);
+      console.log(chalk.red(err));
+      return;
     }
     var json = JSON.parse(data);
-    //need to rewrite with reading last task's id
+
     newTaskId = json["task"].length > 0 ? json["task"].length + 1 : 1;
     var newTask = taskDesc;
     const newTaskstatus = "todo";
@@ -35,6 +32,7 @@ export function addTask(taskDesc, filePath) {
     var newTaskCreT = NowTime.toUTCString();
     var newTaskUpdT = NowTime.toUTCString();
 
+    // Create task object
     var newTaskJson = {
       id: newTaskId,
       description: newTask,
@@ -43,15 +41,18 @@ export function addTask(taskDesc, filePath) {
       updateAt: newTaskUpdT,
     };
 
+    // new task object integrated with old task and then turn into json object.
     json["task"].push(newTaskJson);
     data = JSON.stringify(json);
     //console.log(data);
 
+    // write into json file.
     fs.writeFile(filePath, data, (err) => {
       if (err) {
         console.log(err);
+        return;
       } else {
-        console.log(`Add new task ${newTaskId} successfully.`);
+        console.log(`Task added successfully. (ID: ${newTaskId})`);
       }
     });
   });
