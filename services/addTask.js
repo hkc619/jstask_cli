@@ -52,7 +52,7 @@ export function addTask(taskDesc, filePath, newJson) {
         console.log(err);
         return;
       } else {
-        console.log(`Add new task ${newTaskId} successfully.`);
+        console.log(`Task added successfully. (ID: ${newTaskId})`);
       }
     });
   });
