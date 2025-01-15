@@ -20,7 +20,7 @@ Each task should have the following properties:
 
 ### Initialization
 
-`npm link`
+`npm link  `
 
 ### Add task
 

@@ -24,10 +24,12 @@ program.version("0.0.1").usage("[options]").option("-n, --name", "Your name.");
 program
   .command("add")
   .argument("<string>", "Task you want to add.")
+  .option("-n, --new", "Create a new json file.")
   .action((str, options) => {
-    //console.log(str);
     //console.log(options);
-    console.log(`Task added successfully (ID: ${addTask(str, "./data.json")})`); //should return id number or ...
+    console.log(
+      `Task added successfully (ID: ${addTask(str, "./data.json", options)})`
+    ); //should return id number or ...
   });
 
 // List
