@@ -20,19 +20,19 @@ program.version("0.0.1").usage("[options]").option("-n, --name", "Your name.");
   .option("-l, --list", "A list of seleted tasks.");
   */
 
-// Add
+// Add a new task
 program
   .command("add")
   .argument("<string>", "Task you want to add.")
   .option("-n, --new", "Create a new json file.")
   .action((str, options) => {
-    //console.log(options);
+    console.log(options);
     console.log(
       `Task added successfully (ID: ${addTask(str, "./data.json", options)})`
     ); //should return id number or ...
   });
 
-// List
+// List task(s) by status
 program
   .command("list")
   .argument("[status]", "List tasks.")
@@ -40,7 +40,7 @@ program
     listTask(status);
   });
 
-// Update
+// Update specific task's description by ID
 program
   .command("update")
   .argument(
@@ -53,7 +53,7 @@ program
     updateTask(argument[0], argument[1]);
   });
 
-// Mark in progress
+// Mark specific task's status in progress by ID
 program
   .command("mark-in-progress")
   .argument("<Id>", "ID of the task you want to mark in progress.")
@@ -61,7 +61,7 @@ program
     markProgressTask(Id);
   });
 
-// Mark done
+// Mark specific task's status done by ID
 program
   .command("mark-done")
   .argument("<Id>", "ID of the task you want to mark done.")
@@ -69,7 +69,7 @@ program
     markDoneTask(Id);
   });
 
-// Delete
+// Delete specific task by ID (Pseudo delete)
 program
   .command("delete")
   .argument("<Id>", "ID of the task you want to deleted.")
@@ -77,7 +77,7 @@ program
     deleleTask(Id);
   });
 
-//
+// Remove specific task by ID
 program
   .command("remove")
   .argument("<Id>", "ID of the task you want to remove.")

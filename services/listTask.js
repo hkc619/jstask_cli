@@ -6,6 +6,7 @@ export async function listTask(status) {
     const data = await fs.promises.readFile("./data.json", "utf8");
     const jsonData = JSON.parse(data);
 
+    // if status is blank, list all not deleted task
     if (status === undefined) {
       for (let i = 0; i < jsonData.task.length; i++) {
         if (

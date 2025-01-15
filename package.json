@@ -9,7 +9,7 @@
   "author": "hkc619",
   "license": "ISC",
   "bin": {
-    "taskcli": "./index.js"
+    "task-cli": "./index.js"
   },
   "dependencies": {
     "chalk": "^5.4.1",

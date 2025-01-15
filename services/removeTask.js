@@ -8,9 +8,12 @@ export async function removeTask(id) {
     const data = await fs.promises.readFile("./data.json", "utf8");
     const jsonData = JSON.parse(data);
     //console.log(jsonData);
+
+    // Check the task is deleted or not.
     if (jsonData["task"][id]["status"] !== "deleted") {
       console.log("Cannot remove this task.");
     } else {
+      // Delete task into null.
       delete jsonData["task"][id];
       console.log(`Remove Task ${id + 1} successfully.`);
     }

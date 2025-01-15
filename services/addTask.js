@@ -3,7 +3,7 @@ import chalk from "chalk";
 import { json } from "stream/consumers";
 
 export function addTask(taskDesc, filePath, newJson) {
-  // when newJson is True, create a new initial JSON file.
+  // When newJson is True, create a new initial JSON file.
   var newTaskId;
   if (newJson) {
     const iniTask = { task: [] };
@@ -16,14 +16,14 @@ export function addTask(taskDesc, filePath, newJson) {
       console.log("Create file successfully.");
     });
   }
-
+  // Read json file to get old task list and turn into object.
   fs.readFile(filePath, (err, data) => {
     if (err) {
       console.log(chalk.red(err));
       return;
     }
     var json = JSON.parse(data);
-    //need to rewrite with reading last task's id
+
     newTaskId = json["task"].length > 0 ? json["task"].length + 1 : 1;
     var newTask = taskDesc;
     const newTaskstatus = "todo";
@@ -32,6 +32,7 @@ export function addTask(taskDesc, filePath, newJson) {
     var newTaskCreT = NowTime.toUTCString();
     var newTaskUpdT = NowTime.toUTCString();
 
+    // Create task object
     var newTaskJson = {
       id: newTaskId,
       description: newTask,
@@ -40,10 +41,12 @@ export function addTask(taskDesc, filePath, newJson) {
       updateAt: newTaskUpdT,
     };
 
+    // new task object integrated with old task and then turn into json object.
     json["task"].push(newTaskJson);
     data = JSON.stringify(json);
     //console.log(data);
 
+    // write into json file.
     fs.writeFile(filePath, data, (err) => {
       if (err) {
         console.log(err);
