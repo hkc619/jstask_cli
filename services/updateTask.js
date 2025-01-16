@@ -16,11 +16,13 @@ export async function updateTask(id, newDescription) {
     jsonData["task"][id]["updateAt"] = newTaskUpdT;
     //console.log(jsonData);
 
-    fs.promises.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
+    fs.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(chalk.bgRed(err));
+        return;
+      } else {
+        console.log("Task added successfully. Data: ", jsonData["task"][id]);
       }
-      console.log(jsonData["task"][id]);
     });
   } catch (error) {
     console.log(error);

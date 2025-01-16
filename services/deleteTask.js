@@ -19,9 +19,11 @@ export async function deleleTask(id) {
     console.log(`Task ${id + 1} is deleted.`);
 
     // Write to file
-    fs.promises.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
+    fs.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
       if (err) {
         console.log(chalk.bgRed(err));
+      } else {
+        console.log(`Delete task successfully. (ID: ${id + 1})`);
       }
     });
   } catch (error) {

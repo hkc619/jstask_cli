@@ -47,8 +47,8 @@ program
     "ID and new description of the task you want to update."
   )
   .action((argument) => {
-    console.log(argument[0]);
-    console.log(argument[1]);
+    //console.log(argument[0]);
+    //console.log(argument[1]);
     updateTask(argument[0], argument[1]);
   });
 

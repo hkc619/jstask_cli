@@ -15,7 +15,7 @@ export async function removeTask(id) {
     } else {
       // Delete task into null.
       delete jsonData["task"][id];
-      console.log(`Remove Task ${id + 1} successfully.`);
+      console.log(`Permanently remove Task ${id + 1} successfully.`);
     }
     //console.log(jsonData);
     fs.promises.writeFile("./data.json", JSON.stringify(jsonData), (err) => {
