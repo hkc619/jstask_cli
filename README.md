@@ -20,9 +20,11 @@ Each task should have the following properties:
 
 ### Initialization
 
-`npm link  `
+`npm link`
 
 ### Add task
+
+![avatar](https://github.com/hkc619/jstask_cli/blob/main/media/addtask.png "Add task")
 
 ### Delete Task
 
